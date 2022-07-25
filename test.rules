@@ -1,6 +1,6 @@
 alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg: "CobaltStrike login server"; flow:established; content:"Cyberspace"; depth:200; content:"Somewhere"; distance:0; content:"cobaltstrike"; distance:0; content:"AdvancedPenTesting";distance:0; classtype:exploit-kit; sid:3016001; rev:1; metadata:by al0ne;)
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg: "CoballltStrike download.windowsupdate.com C2 Profile"; 
-flow: established; content:"MSdownload"; 
+flow: established; content:"Msdownload"; 
 http_uri; pcre:"/\/c\/msdownload\/update\/others\/[\d]{4}/\d{2}/\d{7,8}_[\d\w-_]{50,}\.cab/UR"; 
 reference:url,github.com/bluscreenofjeff/MalleableC2Profiles/blob/master/microsoftupdate_getonly.profile; 
 classtype:exploit-kit; sid: 3016002;
