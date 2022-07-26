@@ -13,3 +13,10 @@ alert tcp any any -> any any (msg:\"CobaltStrike C8 Server\"; flow:to_client; co
 fast_pattern; depth:247; content:\"Date: \"; pcre:\"/^HTTP/1.1 200 OK \\r\\nContent-Type: [^\\r\\n]{0,100}\\r\\nDate: [^\\r\\n]{0,100} GMT\\r\\n(Content-Length: \\d+\\r\\n)\\r\\n/\"; threshold:type limit, track by_dst, count 1, seconds 600; 
 classtype:exploit-kit; priority:2; sid:3016012; metadata:created_at 2019_08_05; rev:3;)"
 alert http $EXTERNAL_NET any -> $HOME_NET any (msg: \"CobaltStrike HTTP beacon response\"; flow: established; content:\"200\"; http_stat_code; content:!\"Server:\"; http_header; content:\"application/octet-stream\"; http_header; distance:0;  content:\"Content-Length: 0\"; http_header; distance:0; threshold: type both, track by_src, count 5, seconds 60; classtype:exploit-kit; sid: 3016003; rev: 1; metadata:created_at 2018_11_15,by al0ne;)
+alert icmp any any -> any any (msg:"ICMP Tunnel Detection Of Type Zero"; 
+icode:0; itype:0; content:!"|101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f3031323334353637|"; content:!"|6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869|"; 
+threshold: type both, track by_src, count 100, seconds 30; 
+sid:3017038; rev:1;)
+alert icmp any any -> any any (msg:"ICMP Tunnel Detection Of Type Eight"; icode:0; itype:8; 
+content:!"|101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f3031323334353637|"; content:!"|6162636465666768696a6b6c6d6e6f7071727374757677616263646566676869|"; threshold: type both, track by_src, count 100, seconds 30; 
+sid:3017037; rev:1;)
