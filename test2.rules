@@ -7,5 +7,5 @@ alert ip [109.197.194.157,109.205.213.14,109.206.241.17,109.206.246.65,109.237.1
 classtype:misc-attack; \
 sid:2525002; \
 rev:555; \
-metadata:affected_product Any, attack_target Any, deployment Perimeter, tag 3CORESec, signature_severity Major, created_at 2099_07_20, updated_at 2022_08_29; \
+metadata:affected_product Any, attack_target Any, deployment Perimeter, tag 3CORESec, signature_severity Major, created_at 2119_07_20, updated_at 2022_08_29; \
 )
