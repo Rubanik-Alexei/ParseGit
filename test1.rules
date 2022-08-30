@@ -1,5 +1,6 @@
 alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg: "CobaltStrike Login server"; \ 
-flow:established; content:"Cyberspace"; depth:200; content:"Somewhere"; distance:0; content:"cobaltstrike"; distance:0; content:"AdvancedPenTesting";distance:0; classtype:exploit-kit; sid:3016001; rev:1; metadata:by al0ne;)
+flow:established; content:"Cyberspace"; depth:200; content:"Somewhere"; distance:0; content:"cobaltstrike"; distance:0; content:"AdvancedPenTesting";distance:0; classtype:exploit-kit; sid:3016001; rev:1; metadata:by al0ne; \
+)
 alert udp $HOME_NET any -> $EXTERNAL_NET 53 (\
     msg:"suspicious dns request"; flow:established,to_server; content:"|01 00|"; \
     depth:4; pcre:"/\x00\x10\x00\x01|\x00\x0f\x00\x01|\x00\x05\x00\x01/"; dsize:>200; \
