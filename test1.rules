@@ -1,4 +1,5 @@
-alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg: "CobaltStrike Login server"; flow:established; content:"Cyberspace"; depth:200; content:"Somewhere"; distance:0; content:"cobaltstrike"; distance:0; content:"AdvancedPenTesting";distance:0; classtype:exploit-kit; sid:3016001; rev:1; metadata:by al0ne;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg: "CobaltStrike Login server"; \ 
+flow:established; content:"Cyberspace"; depth:200; content:"Somewhere"; distance:0; content:"cobaltstrike"; distance:0; content:"AdvancedPenTesting";distance:0; classtype:exploit-kit; sid:3016001; rev:1; metadata:by al0ne;)
 alert udp $HOME_NET any -> $EXTERNAL_NET 53 (\
     msg:"suspicious dns request"; flow:established,to_server; content:"|01 00|"; \
     depth:4; pcre:"/\x00\x10\x00\x01|\x00\x0f\x00\x01|\x00\x05\x00\x01/"; dsize:>200; \
@@ -6,11 +7,7 @@ alert udp $HOME_NET any -> $EXTERNAL_NET 53 (\
 )
 alert http any any -> any any (\
     msg:"CobatlStrikte team servers 200 OK SpaceX";\
-    flow:from_server,established;\
-    content:"200";\
-    http_stat_code;\
-    content:"HTTP/1.1 200 OK|20|";\
-    threshold: type both, track by_src, count 4, seconds 60;\
+    flow:from_server,established; content:"200"; http_stat_code; content:"HTTP/1.1 200 OK|20|";threshold: type both, track by_src, count 4, seconds 60;\
     reference:url,blog.fox-it.com/2019/02/26/identifying-cobalt-strike-team-servers-in-the-wild/;\
     sid:3016011;\
     rev:1;\
