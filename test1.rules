@@ -11,7 +11,7 @@ alert http any any -> any any (\
     msg:"CobatlStrikte team servers 200 OK SpaceXYZ";\
     flow:from_server,established; content:"200"; http_stat_code; content:"HTTP/1.1 200 OK|20|";threshold: type both, track by_src, count 4, seconds 60;\
     reference:url,blog.fox-it.com/2019/02/26/identifying-cobalt-strike-team-servers-in-the-wild/;\
-    sid:3016011;\
+    sid:3016012;\
     rev:1;\
     metadata:created_at 3019_02_27,by al0ne;\
 )
