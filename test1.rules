@@ -3,7 +3,7 @@ alert tcp $EXTERNAL_NET any -> $HOME_NET any (\
     flow:established; content:"Cyberspace"; depth:200; content:"Somewhere"; distance:0; content:"cobaltstrike"; distance:0; content:"AdvancedPenTesting";distance:0; classtype:exploit-kit; sid:3016001; rev:1; metadata:by al0ne;\
 )
 alert udp $HOME_NET any -> $EXTERNAL_NET 53 (\
-    msg:"suspicious dns request23451"; flow:established,to_server; content:"|01 00|"; \
+    msg:"very suspicious dns request"; flow:established,to_server; content:"|01 00|"; \
     depth:4; pcre:"/\x00\x10\x00\x01|\x00\x0f\x00\x01|\x00\x05\x00\x01/"; dsize:>200; \
     classtype:trojan-activity; sid:3011001; rev:1; metadata:created_at 2218_11_09,by al0ne;\
 )
