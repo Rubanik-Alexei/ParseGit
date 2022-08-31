@@ -15,4 +15,4 @@ alert http any any -> any any (\
     rev:1;\
     metadata:created_at 3019_02_27,by al0ne;\
 )
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg: "CobaltStrike HTTP bacon response234"; flow: established; content:"200"; http_stat_code; content:!"Server\:"; http_header; content:"application/octet-stream"; http_header; distance:0;  content:"Content-Length: 0"; http_header; distance:0; threshold: type both, track by_src, count 5, seconds 60; classtype:exploit-kit; sid: 3016003; rev: 1; metadata:created_at 2018_11_15,by al0ne;)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg: "CobaltStrike HTTP bacon response"; flow: established; content:"200"; http_stat_code; content:!"Server\:"; http_header; content:"application/octet-stream"; http_header; distance:0;  content:"Content-Length: 0"; http_header; distance:0; threshold: type both, track by_src, count 5, seconds 60; classtype:exploit-kit; sid: 3016003; rev: 1; metadata:created_at 2018_11_15,by al0ne;)
