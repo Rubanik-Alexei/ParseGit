@@ -8,7 +8,7 @@ alert udp $HOME_NET any -> $EXTERNAL_NET 53 (\
     classtype:trojan-activity; sid:3011001; rev:1; metadata:created_at 2218_11_09,by al0ne;\
 )
 alert http any any -> any any (\
-    msg:"CobatlStrikte team servers 200 OK SpaceX234555";\
+    msg:"CobatlStrikte team servers 200 OK SpaceX";\
     flow:from_server,established; content:"200"; http_stat_code; content:"HTTP/1.1 200 OK|20|";threshold: type both, track by_src, count 4, seconds 60;\
     reference:url,blog.fox-it.com/2019/02/26/identifying-cobalt-strike-team-servers-in-the-wild/;\
     sid:3016011;\
